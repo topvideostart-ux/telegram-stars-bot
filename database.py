@@ -39,11 +39,25 @@ class Database:
             """)
 
     # ── Пользователи ──────────────────────────────────────────────────────
-    def add_user(self, user_id: int, username: str):
+    def add_user(self, user_id: int, usernastr, referrer_id: int = None)::
         with self._get_conn() as conn:
             conn.execute(
                 "INSERT OR IGNORE INTO users (user_id, username) VALUES (?, ?)",
                 (user_id, username),
+
+                            # Обработка реферала
+            if referrer_id:
+                conn.execute(
+                    """INSERT INTO referrals (inviter_id, invited_id) 
+                    VALUES (?, ?)""",
+                    (referrer_id, user_id),
+                )
+                # Добавляем билет рефереру
+                conn.execute(
+                    """UPDATE users SET invites_req = invites_req + 1 
+                    WHERE user_id=?""",
+                    (referrer_id,),
+                )
             )
 
     def set_user_plan(self, user_id: int, plan_key: str, stars: int, invites: int):
