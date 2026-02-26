@@ -85,6 +85,12 @@ class BotHandlers:
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         if update.message:
+            # Отправка GIF-изображения
+            try:
+                with open('images/welcome.gif', 'rb') as gif:
+                    await update.message.reply_animation(animation=gif, caption="")
+            except Exception as e:
+                logger.error(f"Failed to send GIF: {e}")
             await update.message.reply_text(text, reply_markup=reply_markup)
         else:
             await update.callback_query.message.reply_text(text, reply_markup=reply_markup)
