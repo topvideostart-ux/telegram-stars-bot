@@ -39,11 +39,11 @@ class Database:
             """)
 
     # ── Пользователи ──────────────────────────────────────────────────────
-    def add_user(self, user_id: int, usernastr, referrer_id: int = None)::
+    def add_user(self, user_id: int, usernastr, referrer_id: int = None):
         with self._get_conn() as conn:
             conn.execute(
                 "INSERT OR IGNORE INTO users (user_id, username) VALUES (?, ?)",
-                (user_id, username),
+                (user_id, useusername:
 
                             # Обработка реферала
             if referrer_id:
