@@ -87,10 +87,11 @@ class BotHandlers:
 
         if update.message:
             # Отправка GIF-изображения
-            try:
-                gif_path = os.path.join(os.path.dirname(__file__), 'images', 'welcome.gif')
-                with open(gif_path, 'rb') as gif:
-                    await update.message.reply_animation(animation=gif, caption="")
+                        try:
+        
+                    gif_path = os.path.join(os.path.dirname(__file__), 'images', 'welcome.gif')
+                    with open(gif_path, 'rb') as gif:
+                        await update.message.reply_animation(animation=gif, caption="")
             except Exception as e:
                 logger.error(f"Failed to send GIF: {e}")
             await update.message.reply_text(text, reply_markup=reply_markup)        else:
