@@ -249,3 +249,7 @@ async def successful_payment(update: Update, context: ContextTypes.DEFAULT_TYPE)
 # ═══════════════════════════════════════════════════════════════════════════
 async def receive_wish(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
+
+# ═══════════════════════════════════════════════════════════════════════════
+async def receive_wish(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
